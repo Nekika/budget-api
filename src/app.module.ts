@@ -1,7 +1,10 @@
 import { Module } from '@nestjs/common';
+import { PSpendingModule } from './modules/pspending/pspending.module';
 
 @Module({
-  imports: [],
+  imports: [
+      PSpendingModule
+  ],
   controllers: [],
   providers: [],
 })
