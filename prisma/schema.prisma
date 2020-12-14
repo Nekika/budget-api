@@ -1,8 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
+model PSpending {
+  id       Int        @id @default(autoincrement())
+  code     String
+  label    String
+  Spending Spending[]
+}
+
+model Spending {
+  id           Int       @id @default(autoincrement())
+  amount       Float
+  label        String
+  user_id      Int
+  pspending_id Int
+  datetime     DateTime
+  PSpending    PSpending @relation(fields: [pspending_id], references: [id])
+  User         User      @relation(fields: [user_id], references: [id])
+
+  @@index([user_id], name: "Spending_FK")
+  @@index([pspending_id], name: "Spending_FK_1")
+}
+
+model User {
+  id       Int        @id @default(autoincrement())
+  name     String
+  budget   Float      @default(0)
+  Spending Spending[]
 }
