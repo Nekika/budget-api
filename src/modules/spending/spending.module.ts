@@ -5,7 +5,7 @@ import { SpendingService } from './spending.service';
 
 import { SpendingController } from './spending.controller';
 
-import { SpendingValidator } from 'src/helper/validator';
+import { DateValidator, SpendingValidator } from 'src/helper/validator';
 
 
 @Module({
@@ -14,6 +14,7 @@ import { SpendingValidator } from 'src/helper/validator';
   ],
   providers: [
     PrismaService,
+    DateValidator,
     SpendingService,
     SpendingValidator
   ]
